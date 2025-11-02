@@ -4,6 +4,7 @@ import localFont from 'next/font/local'
 import { SessionProvider } from "next-auth/react"
 import { SkeletonTheme } from 'react-loading-skeleton'
 import { ThemeProvider } from "@/components/ThemeProvider"
+import { ThemeSwitcher } from "@/components/ThemeSwitcher"
 import { Toaster } from "sonner"
 import "./globals.css";
 import { auth } from "@/auth";
@@ -63,9 +64,12 @@ export default async function RootLayout({ children, }: Readonly<{ children: Rea
                 },
               }}  
             />
-            <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange >
+            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange >
               <div>
                 {children}
+                <div className="fixed bottom-2 right-2">
+                  <ThemeSwitcher />
+                </div>
               </div>
             </ThemeProvider>
           </SkeletonTheme>

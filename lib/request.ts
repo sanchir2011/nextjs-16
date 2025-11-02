@@ -150,13 +150,13 @@ export const navigate = async (url: string) => {
  * @returns {Promise<Object|boolean>} - A promise that resolves to the response data if successful, or false if there was an error.
  */
 
-export const register = async (data: object): Promise<any> => {
+export const register = async (data: object) => {
   try {
     if(!data) return false
-    const res = await fetch(AUTH_URL + "/user/register", {
+    const res = await fetch(AUTH_URL + "/register", {
       method: 'POST',
       body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
+      headers: { "Content-Type": "application/json" },
       cache: 'no-store'
     })
     const resData = await res.json()
@@ -184,10 +184,10 @@ type VerifyEmailOptions = {
 export const verifyEmail = async ({ email, code }: VerifyEmailOptions) => {
   try {
     if(!email) return false
-    const res = await fetch(AUTH_URL + "/user/verify", {
+    const res = await fetch(AUTH_URL + "/verifyEmail", {
       method: 'POST',
       body: JSON.stringify({ email, code }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
+      headers: { "Content-Type": "application/json" },
       cache: 'no-store'
     })
     const resData = await res.json()
@@ -195,62 +195,6 @@ export const verifyEmail = async ({ email, code }: VerifyEmailOptions) => {
     return resData
   } catch(err){
     console.error('Error verifying email: ', err)
-    return false
-  }
-}
-
-/**
- * Verifies an email by sending a verification code to the server.
- * @param {Object} options - The options for verifying the email.
- * @param {string} options.email - The email to be verified.
- * @param {string} options.id - The verification id.
- * @returns {Promise<Object|boolean>} - A promise that resolves to the response data if successful, or false if there was an error.
- */
-
-type VerifyEmailByIdOptions = {
-  email: string;
-  id: string;
-}
-
-export const verifyEmailById = async ({ email, id }: VerifyEmailByIdOptions) => {
-  try {
-    if(!email) return false
-    const res = await fetch(AUTH_URL + "/user/verifyById", {
-      method: 'POST',
-      body: JSON.stringify({ email, id }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
-      cache: 'no-store'
-    })
-    const resData = await res.json()
-    if(!resData) return false
-    return resData
-  } catch(err){
-    console.error('Error verifying email: ', err)
-    return false
-  }
-}
-
-/**
- * Verifies an email by sending a verification code to the server.
- * @param {Object} options - The options for verifying the email.
- * @param {string} options.email - The email to be verified.
- * @returns {Promise<Object|boolean>} - A promise that resolves to the response data if successful, or false if there was an error.
- */
-
-export const resendVerify = async (email: string) => {
-  try {
-    if(!email) return false
-    const res = await fetch(AUTH_URL + "/user/resend/verify", {
-      method: 'POST',
-      body: JSON.stringify({ email }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
-      cache: 'no-store'
-    })
-    const resData = await res.json()
-    if(!resData) return false
-    return resData
-  } catch(err){
-    console.error('Error resending verify email: ', err)
     return false
   }
 }
@@ -274,7 +218,7 @@ export const validateCode = async ({ email, code }: ValidateCodeOptions) => {
     const res = await fetch(AUTH_URL + "/validateCode", {
       method: 'POST',
       body: JSON.stringify({ email, code }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
+      headers: { "Content-Type": "application/json" },
       cache: 'no-store'
     })
     const resData = await res.json()
@@ -295,10 +239,10 @@ export const validateCode = async ({ email, code }: ValidateCodeOptions) => {
 export const forgotPassword = async (email: string) => {
   try {
     if(!email) return false
-    const res = await fetch(AUTH_URL + "/user/forgot", {
+    const res = await fetch(AUTH_URL + "/forgotPassword", {
       method: 'POST',
       body: JSON.stringify({ email }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
+      headers: { "Content-Type": "application/json" },
       cache: 'no-store'
     })
     const resData = await res.json()
@@ -306,93 +250,6 @@ export const forgotPassword = async (email: string) => {
     return resData
   } catch(err){
     console.error('Error sending forgot password: ', err)
-    return false
-  }
-}
-
-/**
- * Sends a request to the server to reset the user's password.
- * @param {Object} options - The options for the request.
- * @param {string} options.email - The user's email address.
- * @param {string} options.code - The user's verification code.
- * @returns {Promise<Object|boolean>} - A promise that resolves to the response data if successful, or false if there was an error.
- */
-
-type ForgotCheckCodeOptions = {
-  email: string;
-  code: string;
-}
-
-export const forgotCheckCode = async ({ email, code }: ForgotCheckCodeOptions) => {
-  try {
-    if(!email) return false
-    const res = await fetch(AUTH_URL + "/user/forgot/check", {
-      method: 'POST',
-      body: JSON.stringify({ email, code }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
-      cache: 'no-store'
-    })
-    const resData = await res.json()
-    if(!resData) return false
-    return resData
-  } catch(err){
-    console.error('Error sending forgot password: ', err)
-    return false
-  }
-}
-
-/**
- * Sends a request to the server to reset the user's password.
- * @param {Object} options - The options for the request.
- * @param {string} options.email - The user's email address.
- * @param {string} options.id - The user's verification id.
- * @returns {Promise<Object|boolean>} - A promise that resolves to the response data if successful, or false if there was an error.
- */
-
-type ForgotCheckIdOptions = {
-  email: string;
-  id: string;
-}
-
-export const forgotCheckId = async ({ email, id }: ForgotCheckIdOptions) => {
-  try {
-    if(!email) return false
-    const res = await fetch(AUTH_URL + "/user/forgot/checkById", {
-      method: 'POST',
-      body: JSON.stringify({ email, id }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
-      cache: 'no-store'
-    })
-    const resData = await res.json()
-    if(!resData) return false
-    return resData
-  } catch(err){
-    console.error('Error sending forgot password: ', err)
-    return false
-  }
-}
-
-/**
- * Verifies an email by sending a verification code to the server.
- * @param {Object} options - The options for verifying the email.
- * @param {string} options.email - The email to be verified.
- * @returns {Promise<Object|boolean>} - A promise that resolves to the response data if successful, or false if there was an error.
- */
-
-export const resendForgot = async (email: string) => {
-  try {
-    if(!email) return false
-    const res = await fetch(AUTH_URL + "/user/resend/forgot", {
-      method: 'POST',
-      body: JSON.stringify({ email }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
-      cache: 'no-store'
-    })
-    const resData = await res.json()
-    if(!resData) return false
-    return resData
-  } catch(err){
-    console.error('Error resending verify email: ', err)
     return false
   }
 }
@@ -410,16 +267,16 @@ export const resendForgot = async (email: string) => {
 type ResetPasswordOptions = {
   email: string;
   password: string;
-  id: string;
+  code: string;
 }
 
-export const resetPassword = async ({ email, password, id }: ResetPasswordOptions) => {
+export const resetPassword = async ({ email, password, code }: ResetPasswordOptions) => {
   try {
-    if(!email || !password || !id) return false
-    const res = await fetch(AUTH_URL + "/user/reset", {
+    if(!email || !password || !code) return false
+    const res = await fetch(AUTH_URL + "/resetPassword", {
       method: 'POST',
-      body: JSON.stringify({ email, password, id }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
+      body: JSON.stringify({ email, password, code }),
+      headers: { "Content-Type": "application/json" },
       cache: 'no-store'
     })
     const resData = await res.json()
@@ -427,44 +284,6 @@ export const resetPassword = async ({ email, password, id }: ResetPasswordOption
     return resData
   } catch(err){
     console.error('Error resetting password: ', err)
-    return false
-  }
-}
-
-
-
-export const checkUserEmail = async (email: string) => {
-  try {
-    if(!email) return false
-    const res = await fetch(AUTH_URL + "/user/check/email", {
-      method: 'POST',
-      body: JSON.stringify({ email }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
-      cache: 'no-store'
-    })
-    const resData = await res.json()
-    if(!resData) return false
-    return resData
-  } catch(err){
-    console.error('Error resending verify email: ', err)
-    return false
-  }
-}
-
-export const checkUserPhone = async (phone: string) => {
-  try {
-    if(!phone) return false
-    const res = await fetch(AUTH_URL + "/user/check/phone", {
-      method: 'POST',
-      body: JSON.stringify({ phone }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
-      cache: 'no-store'
-    })
-    const resData = await res.json()
-    if(!resData) return false
-    return resData
-  } catch(err){
-    console.error('Error resending verify phone: ', err)
     return false
   }
 }

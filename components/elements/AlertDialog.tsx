@@ -48,7 +48,7 @@ export default function AlertDialog({ children, title = titleDefault, descriptio
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle className="!font-gilroy">{title}</AlertDialogTitle>
+          <AlertDialogTitle className="font-gilroy!">{title}</AlertDialogTitle>
           <AlertDialogDescription>
             {description}
           </AlertDialogDescription>
