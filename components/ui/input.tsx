@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { cn } from "@/utils/util"
+import { cn } from "@/lib/util"
 
 interface InputMainProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string

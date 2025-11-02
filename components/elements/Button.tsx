@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Loader2, Check } from "lucide-react"
-import { classNames } from "@/utils/util"
+import { classNames } from "@/lib/util"
 import { Slot } from "@radix-ui/react-slot"
 import { cva } from "class-variance-authority"
 import Link from "next/link"

@@ -16,7 +16,7 @@ import Link from '@tiptap/extension-link'
 import CharacterCount from '@tiptap/extension-character-count'
 
 import { uploadFiles } from '@/lib/request'
-import { formatImageURL } from '@/utils/util'
+import { formatImageURL } from '@/lib/util'
 
 import { toast } from 'sonner'
 

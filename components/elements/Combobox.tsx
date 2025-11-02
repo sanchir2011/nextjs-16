@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Check, ChevronsUpDown } from "lucide-react"
 
-import { classNames } from "@/utils/util"
+import { classNames } from "@/lib/util"
 import { Button } from "@/components/elements/Button"
 import {
   Command,
