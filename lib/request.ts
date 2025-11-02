@@ -72,7 +72,6 @@ export const sendRequestFile = async ({ url, method = 'GET', body = {}, auth = t
     accessToken = session.user.accessToken
     if(!accessToken) { redirect('/login'); return false; }
     headers = {"Authorization" : `Bearer ${accessToken}`, "Content-Type": "application/json", "Access-Control-Allow-Credentials": "true" }
-    if(session.user.vendor) headers = { ...headers, "Vendor": session.user.vendor.id }
   }
   else headers = {"Content-Type": "application/json", "Access-Control-Allow-Credentials": "true"}
   let fetchOptions = {}
@@ -120,7 +119,6 @@ export const uploadFiles = async ({ formData, auth = true }: UploadFilesOptions)
     accessToken = session?.user?.accessToken
     if(!accessToken) { redirect('/login'); return false }
     headers = {"Authorization" : `Bearer ${accessToken}`}
-    if(session.user.vendor) headers = { ...headers, "Vendor": session.user.vendor.id }
   }
   try {
     res = await fetch(API_URL + '/upload', { method: 'POST', headers: headers, body: formData })

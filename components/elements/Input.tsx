@@ -69,7 +69,7 @@ export default function Input({ type = 'text', value, onChange, container, descr
           <Button variant={buttonVariant} onClick={buttonAction} isLoading={isButtonLoading} loadingMessage={buttonLoadingText} icon={buttonIcon} size={(!buttonText && buttonIcon) ? 'icon' : 'default'} >{buttonText}</Button>
         </div>
       ) : (
-        <InputMain value={value} onChange={onChange} inputSize={inputSize} leftIcon={leftIcon} rightIcon={rightIcon} leftAction={leftAction} rightAction={rightAction} type={type} placeholder={placeholder} required={required} onWheel={type == 'number' ? (e) => {e.currentTarget.blur()} : () => {}}  className={`${className} ${errorText ? '!border-destructive' : ''}`} {...props} />
+        <InputMain value={value} onChange={onChange} inputSize={inputSize} leftIcon={leftIcon} rightIcon={rightIcon} leftAction={leftAction} rightAction={rightAction} type={type} placeholder={placeholder} required={required} onWheel={type == 'number' ? (e) => {e.currentTarget.blur()} : () => {}}  className={`${className} ${errorText ? 'border-destructive!' : ''}`} {...props} />
       ) }
       { errorText ? (
         <p className="text-xs font-medium text-destructive">{errorText}</p>
