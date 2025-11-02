@@ -1,8 +1,16 @@
-import NextAuth, { type DefaultSession } from "next-auth"
+import NextAuth, { type DefaultSession, NextAuthConfig } from "next-auth"
 import Credentials from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import TwitterProvider from "next-auth/providers/twitter";
+import { CredentialsSignin } from "next-auth";
 import type { User, Session } from './lib/types';
+
+class CustomError extends CredentialsSignin {
+  constructor(message: string) {
+    super()
+    this.message = message
+  }
+}
 
 declare module "next-auth" {
   interface Session {
@@ -10,22 +18,26 @@ declare module "next-auth" {
   }
 }
 
-export const {
-  handlers,
-  auth,
-  signIn,
-  signOut,
-} = NextAuth({
+export const authConfig: NextAuthConfig = {
   providers: [
     Credentials({
       name: 'Credentials',
       credentials: {},
       async authorize(credentials: any) {
-        const { email, password } = credentials ?? {};
-        // TODO: replace the following with real authentication logic (DB lookup / password verification)
-        if (!email || !password) return null;
-        // Return a User-like object on success; return null on failure
-        return { id: email, name: String(email).split('@')[0], email } as any;
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`, {
+          method: "POST",
+          body: JSON.stringify(credentials),
+          headers: {
+            "Content-Type": "application/json",
+            "Auth-Key": process.env.AUTH_SECRET_KEY!,
+          },
+          cache: "no-store",
+        })
+        const user = await res.json()
+        if (res.ok && user?.status === 200) {
+          return user.data as User
+        }
+        throw new CustomError(user?.error || "Имэйл эсвэл нууц үг буруу байна")
       },
     }),
     GoogleProvider({
@@ -53,21 +65,38 @@ export const {
       }
 
       if(account && account.provider === "google"){
-        if(!profile) return null;
-        if(!profile.azp) return null;
-        if(profile.azp !== process.env.GOOGLE_CLIENT) return null;
-        // use profile.email to auth as google provider
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/google`, {
+          method: "POST",
+          body: JSON.stringify(profile),
+          headers: {
+            "Content-Type": "application/json",
+            "Auth-Key": process.env.AUTH_SECRET_KEY!,
+          },
+        })
+        const userRes = await response.json()
+        console.log('google sign in', userRes, response)
+        if(!userRes) return null
+        if(userRes.error) throw new CustomError(userRes.error)
+        if(userRes.status === 200) return { ...userRes.data }
+        else return null
       }
 
       if(trigger == "update"){
         return { ...token, ...session.user }
       }
 
-      return { ...token }
+      return { ...token, ...user }
     },
     async session({ session, token }: { session: Session; token: any }) {
       session.user = token as User;
       return session;
     },
   },
-});
+}
+
+export const {
+  handlers,
+  auth,
+  signIn,
+  signOut,
+} = NextAuth(authConfig)

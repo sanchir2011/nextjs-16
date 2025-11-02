@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { verifyEmail } from '@/lib/request'
+import { verifyEmailById } from '@/lib/request'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import { CircleCheck, CircleX } from 'lucide-react'
@@ -18,12 +18,12 @@ export default function VerifyEmail(){
   const router = useRouter()
  
   const email = searchParams.get('email')
-  const code = searchParams.get('code')
+  const id = searchParams.get('id')
 
   useEffect(() => {
-    if(email && code) {
+    if(email && id) {
       const verify = async () => {
-        const response = await verifyEmail({ email, code })
+        const response = await verifyEmailById({ email, id })
         if(response && response.status == 200) {
           setSuccess(true)
           setMessage('Имэйл хаяг амжилттай баталгаажлаа 🤗')
@@ -36,7 +36,7 @@ export default function VerifyEmail(){
       }
       verify()
     }
-  }, [email, code])
+  }, [email, id])
 
   return (
     <div className='flex flex-col gap-4 items-center justify-center'>
@@ -44,19 +44,27 @@ export default function VerifyEmail(){
         <>
           { success ? (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
-              <CircleCheck className='w-20 h-20 text-foreground' />
+              <CircleCheck className='w-20 h-20 text-green-500' />
             </motion.div>
           ) : (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
-              <CircleX className='w-20 h-20 text-foreground' />
+              <CircleX className='w-20 h-20 text-destructive' />
             </motion.div>
           ) }
-          <motion.div className='text-center text-xl font-semibold text-foreground px-8' initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>{ message }</motion.div>
-          <motion.div className='grow-0 mt-4' initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
-            <Button onClick={() => router.push('/')}>
-              Нүүр хуудас
-            </Button>
-          </motion.div>
+          <motion.div className='text-center text-xl font-semibold text-foreground px-8 font-gilroy' initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>{ message }</motion.div>
+          { success ? (
+            <motion.div className='grow-0 mt-4' initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
+              <Button onClick={() => router.push('/')}>
+                Нүүр хуудас
+              </Button>
+            </motion.div>
+          ) : (
+            <motion.div className='grow-0 mt-4' initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
+              <Button onClick={() => router.push('/login')}>
+                Нэвтрэх
+              </Button>
+            </motion.div>
+          )}
         </>
       ) }
     </div>

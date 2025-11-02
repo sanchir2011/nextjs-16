@@ -1,6 +1,6 @@
+import { auth } from "@/auth"
 import Forgot from "@/components/auth/Forgot"
 import { redirect } from 'next/navigation'
-import { auth } from "@/auth"
 
 export const metadata = {
   title: 'Нууц үг сэргээх'

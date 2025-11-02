@@ -1,6 +1,6 @@
+import { auth } from "@/auth"
 import Register from "@/components/auth/Register"
 import { redirect } from 'next/navigation'
-import { auth } from "@/auth"
 
 export const metadata = {
   title: 'Бүртгүүлэх'

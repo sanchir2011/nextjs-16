@@ -6,10 +6,10 @@ import { useSearchParams } from "next/navigation"
 
 export default function Logout(){
   const searchParams = useSearchParams()
-  const redirectUrl = searchParams.get('url')
+  const callbackUrl = searchParams.get('url')
 
   useEffect(() =>{
-    if(redirectUrl) signOut({ callbackUrl: redirectUrl })
+    if(callbackUrl) signOut({ callbackUrl: callbackUrl })
     else signOut({ callbackUrl: "/login" })
   }, [])
 
