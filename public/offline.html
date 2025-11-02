@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>Offline</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+            body {
+                background-color: #f8fafc;
+                color: #020617;
+                font-family: 'Rubik', sans-serif;
+            }
+            .container {
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+                justify-content: center;
+                align-items: center;
+                gap: 32px;
+            }
+            .offline-icon {
+                width: 150px;
+            }
+            .icon {
+                position: absolute;
+                top: 40px;
+                left: 0px;
+                width: 100%;
+                text-align: center;
+            }
+            .icon img {
+                width: 160px;
+            }
+            .button {
+                display: inline-block;
+                cursor: pointer;
+                background-color: #0f172a;
+                color: white;
+                font-weight: 500;
+                font-size: 15px;
+                padding: 11px 32px 12px;
+                border-radius: 8px;
+                -webkit-user-select: none; 
+                -ms-user-select: none; 
+                user-select: none;
+                box-sizing: border-box;
+                text-align: center;
+                
+            }
+            .button span {
+                display: inline-block;
+                height: 20px;
+                margin-top: 2px;
+            }
+            .button:hover {
+                background-color: #1e293b;
+                transition: .3s;
+                transition-timing-function: ease;
+            }                      
+            .heading {
+                text-align: center;
+                font-size: 24px;
+                font-weight: 700;
+                padding-bottom: 16px;
+            }             
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="title">
+                <div class="heading">
+                    Холболт тасарлаа
+                </div>
+                <span>Таны интернэт холболт тасарсан байна 😢</span>
+            </div>
+            <div class="button" onclick="window.location.replace('/')">Дахин оролдох</div>
+        </div>
+    </body>
+</html>
