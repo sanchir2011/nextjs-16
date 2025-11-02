@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js 16 Starter Kit by Sanchir Enkhbold
 
-## Getting Started
+## version 1
 
-First, run the development server:
+- [x] Next.js v16.0.1
+- [x] Next Auth v5 Beta
+- [x] React v19.2.0
+- [x] Headless UI v2.2.2
+- [x] Framer motion v12.11.1
+- [x] Lucide Icon v0.552.0
+- [x] Sonner Toast v2.0.3
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Visit to my portfolio for more: <https://sanchir.dev>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### What's included?
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- With Shadcn/ui, Tailwind CSS, you can create an amazing-looking website.
+- More than 20+ custom made components.
+- Beautiful toast notifications by `sonner`.
+- Third party auth: **Google Sign in** (soon will add more).
+- Pre-made authorization pages that include: Login, Register, Logout, Forgot Password, Reset Password, Verify Email.
+- Customized 404 page.
+- Light and dark mode switchable.
+- PWA (Progressive Web App) Setup.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Installation guide
 
-## Learn More
+ 1. Clone this repository to your folder: `git clone https://github.com/sanchir2011/nextjs-16.git project`
+ 2. Go to the folder where you cloned: `cd project`
+ 3. Install all dependencies by running `npm install`
+ 4. Create `.env` file for development: `cp .env.example .env`
+ 5. Edit the created `.env` file:
+ 6. Replace `AUTH_SECRET` variable with random hex string. You can do this by running `openssl rand -hex 32`. It will generate you a secret then you can replace it.
+ 7. This starter kit comes with **Google Sign In** feature. So, you have to create a Google OAuth credentials by following [these steps](https://developers.google.com/workspace/guides/create-credentials). When you created your credentials just replace on `GOOGLE_ID` and `GOOGLE_SECRET`.
+ 8. Then replace your development url on `NEXT_PUBLIC_URL` and backend url on `NEXT_PUBLIC_BACKEND_URL`. For example: if your next.js is running on port 3010 just change it to `http://localhost:3010`.
+ 9. Finally, If you are using any buckets (Google Storage Bucket, etc.), please provide your url on `NEXT_PUBLIC_BUCKET`.
+ 10. Now you are safe to run `npm run dev` to start your Next.js.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Congratulations 🎉 You just created your Next.js project 😊.
+If you liked it, please leave a star ⭐️. Thanks!
