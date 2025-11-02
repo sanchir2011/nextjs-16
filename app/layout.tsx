@@ -1,16 +1,8 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import localFont from 'next/font/local'
+import { SessionProvider } from "next-auth/react"
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,12 +15,121 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className} ${inter.variable} ${gilroy.variable} subpixel-antialiased`} >
+        <SessionProvider>
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );
 }
+
+
+const inter = Inter({ subsets: ["cyrillic-ext", "cyrillic", "latin"], variable: "--font-inter", display: "swap" })
+const gilroy = localFont({
+  src: [
+    {
+      path: '../assets/fonts/GIP-Thin.otf',
+      weight: '100',
+      style: 'normal',
+    },
+    {
+      path: '../assets/fonts/GIP-ThinItalic.otf',
+      weight: '100',
+      style: 'italic',
+    },
+    {
+      path: '../assets/fonts/GIP-UltraLight.otf',
+      weight: '200',
+      style: 'normal',
+    },
+    {
+      path: '../assets/fonts/GIP-UltraLightItalic.otf',
+      weight: '200',
+      style: 'italic',
+    },
+    {
+      path: '../assets/fonts/GIP-Light.otf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../assets/fonts/GIP-LightItalic.otf',
+      weight: '300',
+      style: 'italic',
+    },
+    {
+      path: '../assets/fonts/GIP-Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../assets/fonts/GIP-RegularItalic.otf',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: '../assets/fonts/GIP-Medium.otf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../assets/fonts/GIP-MediumItalic.otf',
+      weight: '500',
+      style: 'italic',
+    },
+    {
+      path: '../assets/fonts/GIP-SemiBold.otf',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../assets/fonts/GIP-SemiBoldItalic.otf',
+      weight: '600',
+      style: 'italic',
+    },
+    {
+      path: '../assets/fonts/GIP-Bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../assets/fonts/GIP-BoldItalic.otf',
+      weight: '700',
+      style: 'italic',
+    },
+    {
+      path: '../assets/fonts/GIP-ExtraBold.otf',
+      weight: '800',
+      style: 'normal',
+    },
+    {
+      path: '../assets/fonts/GIP-ExtraBoldItalic.otf',
+      weight: '800',
+      style: 'italic',
+    },
+    {
+      path: '../assets/fonts/GIP-Black.otf',
+      weight: '900',
+      style: 'normal',
+    },
+    {
+      path: '../assets/fonts/GIP-BlackItalic.otf',
+      weight: '900',
+      style: 'italic',
+    },
+    {
+      path: '../assets/fonts/GIP-Heavy.otf',
+      weight: '950',
+      style: 'normal',
+    },
+    {
+      path: '../assets/fonts/GIP-HeavyItalic.otf',
+      weight: '950',
+      style: 'italic',
+    },
+  ],
+  variable: '--font-gilroy',
+  display: 'swap',
+})

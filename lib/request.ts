@@ -1,6 +1,6 @@
 "use server"
 
-import { auth as authUser } from "./auth"
+import { auth as authUser } from "../auth"
 import { redirect } from "next/navigation"
 import { Session } from "./types"
 

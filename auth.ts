@@ -2,7 +2,7 @@ import NextAuth, { type DefaultSession } from "next-auth"
 import Credentials from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import TwitterProvider from "next-auth/providers/twitter";
-import type { User, Session } from './types';
+import type { User, Session } from './lib/types';
 
 declare module "next-auth" {
   interface Session {
@@ -11,7 +11,7 @@ declare module "next-auth" {
 }
 
 export const {
-  handlers: { GET, POST },
+  handlers,
   auth,
   signIn,
   signOut,
