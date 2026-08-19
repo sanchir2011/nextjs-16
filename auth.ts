@@ -29,7 +29,7 @@ export const authConfig: NextAuthConfig = {
           body: JSON.stringify(credentials),
           headers: {
             "Content-Type": "application/json",
-            "Auth-Key": process.env.AUTH_SECRET_KEY!,
+            "Auth-Key": process.env.BACKEND_AUTH_KEY!,
           },
           cache: "no-store",
         })
@@ -70,7 +70,7 @@ export const authConfig: NextAuthConfig = {
           body: JSON.stringify(profile),
           headers: {
             "Content-Type": "application/json",
-            "Auth-Key": process.env.AUTH_SECRET_KEY!,
+            "Auth-Key": process.env.BACKEND_AUTH_KEY!,
           },
         })
         const userRes = await response.json()

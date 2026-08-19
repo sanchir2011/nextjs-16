@@ -5,7 +5,7 @@ import { SessionProvider } from "next-auth/react"
 import { SkeletonTheme } from 'react-loading-skeleton'
 import { ThemeProvider } from "@/components/ThemeProvider"
 import { ThemeSwitcher } from "@/components/ThemeSwitcher"
-import { Toaster } from "sonner"
+import { Toaster } from "@/components/ui/toaster"
 import "./globals.css";
 import { auth } from "@/auth";
 
@@ -14,7 +14,7 @@ const description = "A starter kit for NextJS 16 with TypeScript, Tailwind CSS, 
 const author = "Sanchir Enkhbold"
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_URL!),
+  metadataBase: new URL(process.env.NEXTAUTH_URL!),
   title: title,
   description: description,
   robots: {
@@ -53,18 +53,8 @@ export default async function RootLayout({ children, }: Readonly<{ children: Rea
       <body className={`${inter.className} ${inter.variable} ${gilroy.variable} subpixel-antialiased`} >
         <SessionProvider session={session}>
           <SkeletonTheme baseColor="hsl(var(--muted))" highlightColor="hsl(var(--background))">
-            <Toaster 
-              position="top-right"
-              closeButton={true}
-              toastOptions={{
-                classNames: {
-                  toast: 'bg-bg! border-border! text-foreground! rounded-md! shadow-xs! mt-10! lg:mt-0!',
-                  actionButton: 'bg-primary! text-background! rounded-sm! p-3!',
-                  cancelButton: 'bg-secondary! text-foreground! rounded-sm! p-3!',
-                },
-              }}  
-            />
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange >
+              <Toaster />
               <div>
                 {children}
                 <div className="fixed bottom-2 right-2">

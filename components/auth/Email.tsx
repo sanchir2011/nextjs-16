@@ -10,7 +10,7 @@ import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp
 
 import { Button } from '../elements/Button'
 import { RotateCcw } from 'lucide-react'
-import { toast } from 'sonner'
+import { toast } from '@/lib/toast'
 import { User } from '@/lib/types'
 
 export default function Email({ user } : { user: User }){

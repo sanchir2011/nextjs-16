@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: [],
     },
-    sitemap: `${process.env.NEXT_PUBLIC_URL}/sitemap.xml`,
+    sitemap: `${process.env.NEXTAUTH_URL}/sitemap.xml`,
   }
 }

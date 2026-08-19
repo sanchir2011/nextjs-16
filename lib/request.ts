@@ -154,7 +154,7 @@ export const register = async (data: object): Promise<any> => {
     const res = await fetch(AUTH_URL + "/register", {
       method: 'POST',
       body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
+      headers: { "Content-Type": "application/json", "Auth-Key": process.env.BACKEND_AUTH_KEY! },
       cache: 'no-store'
     })
     const resData = await res.json()
@@ -185,7 +185,7 @@ export const verifyEmail = async ({ email, code }: VerifyEmailOptions) => {
     const res = await fetch(AUTH_URL + "/verify", {
       method: 'POST',
       body: JSON.stringify({ email, code }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
+      headers: { "Content-Type": "application/json", "Auth-Key": process.env.BACKEND_AUTH_KEY! },
       cache: 'no-store'
     })
     const resData = await res.json()
@@ -216,7 +216,7 @@ export const verifyEmailById = async ({ email, id }: VerifyEmailByIdOptions) => 
     const res = await fetch(AUTH_URL + "/verifyById", {
       method: 'POST',
       body: JSON.stringify({ email, id }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
+      headers: { "Content-Type": "application/json", "Auth-Key": process.env.BACKEND_AUTH_KEY! },
       cache: 'no-store'
     })
     const resData = await res.json()
@@ -241,7 +241,7 @@ export const resendVerify = async (email: string) => {
     const res = await fetch(AUTH_URL + "/verify/resend", {
       method: 'POST',
       body: JSON.stringify({ email }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
+      headers: { "Content-Type": "application/json", "Auth-Key": process.env.BACKEND_AUTH_KEY! },
       cache: 'no-store'
     })
     const resData = await res.json()
@@ -272,7 +272,7 @@ export const validateCode = async ({ email, code }: ValidateCodeOptions) => {
     const res = await fetch(AUTH_URL + "/validateCode", {
       method: 'POST',
       body: JSON.stringify({ email, code }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
+      headers: { "Content-Type": "application/json", "Auth-Key": process.env.BACKEND_AUTH_KEY! },
       cache: 'no-store'
     })
     const resData = await res.json()
@@ -296,7 +296,7 @@ export const forgotPassword = async (email: string) => {
     const res = await fetch(AUTH_URL + "/forgot", {
       method: 'POST',
       body: JSON.stringify({ email }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
+      headers: { "Content-Type": "application/json", "Auth-Key": process.env.BACKEND_AUTH_KEY! },
       cache: 'no-store'
     })
     const resData = await res.json()
@@ -327,7 +327,7 @@ export const forgotCheckCode = async ({ email, code }: ForgotCheckCodeOptions) =
     const res = await fetch(AUTH_URL + "/forgot/check", {
       method: 'POST',
       body: JSON.stringify({ email, code }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
+      headers: { "Content-Type": "application/json", "Auth-Key": process.env.BACKEND_AUTH_KEY! },
       cache: 'no-store'
     })
     const resData = await res.json()
@@ -358,7 +358,7 @@ export const forgotCheckId = async ({ email, id }: ForgotCheckIdOptions) => {
     const res = await fetch(AUTH_URL + "/forgot/checkById", {
       method: 'POST',
       body: JSON.stringify({ email, id }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
+      headers: { "Content-Type": "application/json", "Auth-Key": process.env.BACKEND_AUTH_KEY! },
       cache: 'no-store'
     })
     const resData = await res.json()
@@ -383,7 +383,7 @@ export const resendForgot = async (email: string) => {
     const res = await fetch(AUTH_URL + "/forgot/resend", {
       method: 'POST',
       body: JSON.stringify({ email }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
+      headers: { "Content-Type": "application/json", "Auth-Key": process.env.BACKEND_AUTH_KEY! },
       cache: 'no-store'
     })
     const resData = await res.json()
@@ -417,7 +417,7 @@ export const resetPassword = async ({ email, password, id }: ResetPasswordOption
     const res = await fetch(AUTH_URL + "/reset", {
       method: 'POST',
       body: JSON.stringify({ email, password, id }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
+      headers: { "Content-Type": "application/json", "Auth-Key": process.env.BACKEND_AUTH_KEY! },
       cache: 'no-store'
     })
     const resData = await res.json()
@@ -437,7 +437,7 @@ export const checkUserEmail = async (email: string) => {
     const res = await fetch(AUTH_URL + "/check/email", {
       method: 'POST',
       body: JSON.stringify({ email }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
+      headers: { "Content-Type": "application/json", "Auth-Key": process.env.BACKEND_AUTH_KEY! },
       cache: 'no-store'
     })
     const resData = await res.json()
@@ -455,7 +455,7 @@ export const checkUserPhone = async (phone: string) => {
     const res = await fetch(AUTH_URL + "/check/phone", {
       method: 'POST',
       body: JSON.stringify({ phone }),
-      headers: { "Content-Type": "application/json", "Auth-Key": process.env.AUTH_SECRET_KEY! },
+      headers: { "Content-Type": "application/json", "Auth-Key": process.env.BACKEND_AUTH_KEY! },
       cache: 'no-store'
     })
     const resData = await res.json()

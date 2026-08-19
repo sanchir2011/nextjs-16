@@ -18,7 +18,7 @@ import CharacterCount from '@tiptap/extension-character-count'
 import { uploadFiles } from '@/lib/request'
 import { formatImageURL } from '@/lib/util'
 
-import { toast } from 'sonner'
+import { toast } from '@/lib/toast'
 
 import { 
   Bold, 

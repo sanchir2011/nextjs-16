@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { isValidEmail } from '@/lib/util'
 import { signIn } from 'next-auth/react'
-import { toast } from 'sonner'
+import { toast } from '@/lib/toast'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 

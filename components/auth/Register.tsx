@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { isValidEmail, isValidName } from '@/lib/util'
 import { signIn } from 'next-auth/react'
 import { checkUserEmail, checkUserPhone, register } from '@/lib/request'
-import { toast } from 'sonner'
+import { toast } from '@/lib/toast'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import Image from "next/image"
